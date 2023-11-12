@@ -1,8 +1,5 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-
-// import * as basicLightbox from 'basiclightbox';
-// import 'basiclightbox/dist/basicLightbox.min.css';
     
 const container = document.querySelector(".gallery")
 
@@ -36,11 +33,22 @@ function handleClick(event) {
     // console.log(originalImageURL);
     
     const lightBox = basicLightbox.create(
-        `<img src="${originalImageURL}" width="800" height="600"`
+        `<img src="${originalImageURL}" width="800" height="600"/>`
     );
     lightBox.show();
+
+    const closeLightBox = (event) => {
+            if (event.key === 'Escape') {
+                lightBox.close();
+                document.removeEventListener('keydown', closeLightBox);
+            }
+        };
+    document.addEventListener('keydown', closeLightBox);
+
 }
 
+
+        
 console.log(handleClick(event));
 
 // console.log(galleryItems);
